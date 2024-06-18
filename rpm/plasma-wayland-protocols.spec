@@ -3,7 +3,7 @@
 %global debug_package %{nil}
 
 Name:    plasma-wayland-protocols
-Version: 1.10.0
+Version: 1.13.0
 Release: 1%{?dist}
 Summary: Plasma Specific Protocols for Wayland
 
@@ -37,18 +37,11 @@ developing applications that use %{name}.
 export QTDIR=%{_opt_qt5_prefix}
 touch .git
 
-mkdir -p build
-pushd build
-
-%_opt_cmake_kf5 ../
-%make_build
-
-popd
+%_opt_cmake_kf5
+%cmake_build
 
 %install
-pushd build
-make DESTDIR=%{buildroot} install
-popd
+%cmake_install
 
 %files
 %license COPYING.LIB
